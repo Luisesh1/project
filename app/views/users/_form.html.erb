@@ -4,7 +4,6 @@
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,66 +12,68 @@
     </div>
   <% end %>
   <fieldset>
-    <legend>Legend</legend>
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-      <div class="col-lg-10">
-        <textarea class="form-control" rows="3" id="textArea"></textarea>
-        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-      </div>
-    </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
-
+    <legend>Actualizar informacion del usuario</legend>
   
   <div class="field">
-    <%= f.label :usuario %><br>
-    <%= f.text_field :usuario %>
+    <%= f.label :nombre ,class: "col-lg-2 control-label"%><br>
+    <%= f.text_field :nombre,class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :foto %><br>
-    <%= f.text_area :foto %>
+    <%= f.label :apellidos ,class: "col-lg-2 control-label"%><br>
+    <%= f.text_field :apellidos,class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+    <%= f.label :facebook,class: "col-lg-2 control-label"%><br>
+    <%= f.text_field :facebook,class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :apellidos %><br>
-    <%= f.text_field :apellidos %>
+    <%= f.label :twitter ,class: "col-lg-2 control-label" %><br>
+    <%= f.text_field :twitter,class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :facebook %><br>
-    <%= f.text_field :facebook %>
+    <%= f.label :pass ,class: "col-lg-2 control-label"%><br>
+    <%= f.text_field :pass,class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :twitter %><br>
-    <%= f.text_field :twitter %>
-  </div>
-  <div class="field">
-    <%= f.label :pass %><br>
-    <%= f.text_field :pass %>
+    <%= f.label :foto ,class: "col-lg-2 control-label"%><br>
+    <%= f.hidden_field :foto,id:"textAreaFileContents",class: "form-control" %>
+    <input id="inputFileToLoad" type="file" onchange="loadImageFileAsURL();" class="btn btn-primary" />
+    <img id="imagenid"  class="img-responsive img-circle col_lg_6">
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Enviar", :class=> "btn btn-primary" %>
   </div>
+  
+  </fieldset>
+</form>
+  
 <% end %>
+
+ 
+<script type="text/javascript">
+ 
+function loadImageFileAsURL()
+{
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0)
+    {
+        var fileToLoad = filesSelected[0];
+ 
+        var fileReader = new FileReader();
+ 
+        fileReader.onload = function(fileLoadedEvent) 
+        {
+            var textAreaFileContents = document.getElementById
+            (
+                "textAreaFileContents"
+            );
+            var base64=fileLoadedEvent.target.result;
+            textAreaFileContents.innerHTML = base64;
+            $("#imagenid").attr("src",base64);
+        };
+ 
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}
+ 
+</script>
