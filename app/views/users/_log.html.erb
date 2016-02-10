@@ -1,0 +1,12 @@
+
+<%=image_tag("user.png",class:"image-responsive center-block")%>
+
+
+<%=form_for(@user,url: {action: "check"}, method: "post") do |f|%>
+	<%=f.label :usuario,class:"col-lg-2 control-label"%>
+	<%=f.text_field :usuario, class:"form-control"%>
+	<br>
+	<%=f.label :pass,class:"col-lg-2 control-label"%>
+	<%=f.text_field :pass, class:"form-control"%>
+	<%=f.submit "submit",:id=>"submit_log"%>
+<%end%>

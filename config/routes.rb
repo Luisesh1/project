@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
-  
+  resources :users, except: [:show]
+  match "create_acount"=>"users#new", via: [:get]
+  get "users/log"
+  match "sing_in"=>"users#log", via: [:get]
   get 'welcome/index'
-
+  post 'users/check'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

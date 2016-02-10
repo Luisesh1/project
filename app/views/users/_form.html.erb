@@ -1,5 +1,4 @@
 
-
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -37,8 +36,8 @@
   <div class="field">
     <%= f.label :foto ,class: "col-lg-2 control-label"%><br>
     <%= f.hidden_field :foto,id:"textAreaFileContents",class: "form-control" %>
+    <img id="imagenid"  class="img-circle center-block"><br>
     <input id="inputFileToLoad" type="file" onchange="loadImageFileAsURL();" class="btn btn-primary" />
-    <img id="imagenid"  class="img-responsive img-circle col_lg_6">
   </div>
   <div class="actions">
     <%= f.submit "Enviar", :class=> "btn btn-primary" %>
@@ -51,7 +50,7 @@
 
  
 <script type="text/javascript">
- 
+ $("#imagenid").attr("src", $("#textAreaFileContents").val());
 function loadImageFileAsURL()
 {
     var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -70,6 +69,7 @@ function loadImageFileAsURL()
             var base64=fileLoadedEvent.target.result;
             textAreaFileContents.innerHTML = base64;
             $("#imagenid").attr("src",base64);
+            $("#textAreaFileContents").val(base64);
         };
  
         fileReader.readAsDataURL(fileToLoad);
