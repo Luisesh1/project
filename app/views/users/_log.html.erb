@@ -1,12 +1,16 @@
 
-<%=image_tag("user.png",class:"image-responsive center-block")%>
-
-
-<%=form_for(@user,url: {action: "check"}, method: "post") do |f|%>
-	<%=f.label :usuario,class:"col-lg-2 control-label"%>
-	<%=f.text_field :usuario, class:"form-control"%>
-	<br>
-	<%=f.label :pass,class:"col-lg-2 control-label"%>
-	<%=f.text_field :pass, class:"form-control"%>
-	<%=f.submit "submit",:id=>"submit_log"%>
-<%end%>
+<div class="row">
+	<div class="col-xs-6 col-sm-5 col-md-4 col-lg-3  col-centered">
+	<%=image_tag("user.png",class:"col-xs-12 img-responsive ")%>
+	</div>
+</div>
+<div class="row"></div>
+	<%=form_for(@user,url: {action: "check"}, method: "post") do |f|%>
+		<%=f.label :usuario,class:"col-lg-2 control-label"%>
+		<%=f.text_field :usuario, class:"form-control"%>
+		<br>
+		<%=f.label :pass,class:"col-lg-2 control-label"%>
+		<%=f.text_field :pass, class:"form-control"%>
+		<%=f.submit "submit",:id=>"submit_log"%>
+	<%end%>
+</div>

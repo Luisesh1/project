@@ -6,13 +6,19 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
-  def log
+  def log (mensaje ="")
     @user = User.new
+
   end
   def check
     
-    u=User.select("usuario").where("usuario='yolo'")
-    render :json=> u[0]
+    u=User.select("pass").where("usuario='#{params[:user][:usuario]}'")[0]
+    if u!=nil && u==params[:user][:pass]
+      redirect_to :welcome
+    else
+      redirect_to "/create_acount"
+    end
+
   end
   # GET /users/1
   # GET /users/1.json
